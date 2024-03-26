@@ -16,31 +16,32 @@ int main() {
         
         switch (opcion) {
             case 1: {
-			    int cantidadAlumnos;
-			    int costoAlumno;
-			    int costoTotal;
+		    
+		int cantidadAlumnos;
+		int costoAlumno;
+		int costoTotal;
 			
-			    printf("Ingrese la cantidad de alumnos: ");
-			    scanf("%d", &cantidadAlumnos);
+		printf("Ingrese la cantidad de alumnos: ");
+		scanf("%d", &cantidadAlumnos);
 			
-			    if (cantidadAlumnos >= 100) {
-			        costoAlumno = 500;
-			    } else if (cantidadAlumnos >= 50 && cantidadAlumnos < 100) {
-			        costoAlumno = 400;
-			    } else if (cantidadAlumnos >= 30 && cantidadAlumnos < 50) {
-			        costoAlumno = 300;
-			    } else {
-			        costoAlumno = 6000 / cantidadAlumnos;
-			    }
+		if (cantidadAlumnos >= 100) {
+			costoAlumno = 500;
+		} else if (cantidadAlumnos >= 50 && cantidadAlumnos < 100) {
+			costoAlumno = 400;
+		} else if (cantidadAlumnos >= 30 && cantidadAlumnos < 50) {
+			costoAlumno = 300;
+		} else {
+			costoAlumno = 6000 / cantidadAlumnos;
+		}
 			
-			    if (cantidadAlumnos < 30) {
-			        costoTotal = 6000;
-			    } else {
-			        costoTotal = cantidadAlumnos * costoAlumno;
-			    }
+		if (cantidadAlumnos < 30) {
+			costoTotal = 6000;
+		} else {
+			costoTotal = cantidadAlumnos * costoAlumno;
+		}
 			
-			    printf("El costo por alumno es de: $%d\n", costoAlumno);
-			    printf("El costo total del viaje es de: $%d\n", costoTotal);
+		printf("El costo por alumno es de: $%d\n", costoAlumno);
+		printf("El costo total del viaje es de: $%d\n", costoTotal);
                 break;
             }
                 
@@ -122,7 +123,7 @@ int main() {
 				float tiempo;
 				int posicion_encuentro;
 				
-				printf("Un auto se encuentra en el kilómetro 70 y otro en el kilómetro 150.\n");
+				printf("Un auto se encuentra en el kilometro 70 y otro en el kilometro 150.\n");
 				printf("Van en sentidos opuestos y a la misma velocidad.\n");
 				printf("Ingrese la velocidad (km/h): ");
 				scanf("%d", &velocidad);
@@ -131,8 +132,8 @@ int main() {
 				tiempo = (float)distancia_recorrida / (2 * velocidad);
 				posicion_encuentro = posicion_auto1 + velocidad * tiempo;
 				
-				printf("Los autos se encontrarán en el kilómetro %d de la carretera.\n", posicion_encuentro);
-				printf("El encuentro ocurrirá después de %.2f horas.\n", tiempo);
+				printf("Los autos se encontraran en el kilometro %d de la carretera.\n", posicion_encuentro);
+				printf("El encuentro ocurrira despues de %.2f horas.\n", tiempo);
 				
 				
 				}
@@ -143,7 +144,7 @@ int main() {
                 break;
         }
         
-        printf("¿Desea realizar otra operación? (1 para si, 0 para no): ");
+        printf("¿Desea realizar otra operacion? (1 para si, 0 para no): ");
         scanf("%d", &continuar);
         printf("\n");
     } while (continuar == 1);
