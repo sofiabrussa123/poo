@@ -122,7 +122,7 @@ int main() {
 				float tiempo;
 				int posicion_encuentro;
 				
-				printf("Un auto se encuentra en el kilómetro 70 y otro en el kilómetro 150.\n");
+				printf("Un auto se encuentra en el kilÃ³metro 70 y otro en el kilÃ³metro 150.\n");
 				printf("Van en sentidos opuestos y a la misma velocidad.\n");
 				printf("Ingrese la velocidad (km/h): ");
 				scanf("%d", &velocidad);
@@ -131,8 +131,8 @@ int main() {
 				tiempo = (float)distancia_recorrida / (2 * velocidad);
 				posicion_encuentro = posicion_auto1 + velocidad * tiempo;
 				
-				printf("Los autos se encontrarán en el kilómetro %d de la carretera.\n", posicion_encuentro);
-				printf("El encuentro ocurrirá después de %.2f horas.\n", tiempo);
+				printf("Los autos se encontrarÃ¡n en el kilÃ³metro %d de la carretera.\n", posicion_encuentro);
+				printf("El encuentro ocurrirÃ¡ despuÃ©s de %.2f horas.\n", tiempo);
 				
 				
 				}
@@ -143,12 +143,12 @@ int main() {
                 break;
         }
         
-        printf("¿Desea realizar otra operación? (1 para si, 0 para no): ");
+        printf("Â¿Desea realizar otra operaciÃ³n? (1 para si, 0 para no): ");
         scanf("%d", &continuar);
         printf("\n");
     } while (continuar == 1);
     
-    printf("¡Gracias por usar el programa!\n");
+    printf("Â¡Gracias por usar el programa!\n");
     
     return 0;
 }
