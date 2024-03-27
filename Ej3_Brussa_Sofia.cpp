@@ -4,41 +4,30 @@ int main() {
     int opcion;
     
     do {
-        printf("Menú:\n");
-        printf("1. Hallar tres números consecutivos cuya suma sea 87.\n");
-        printf("2. Calcular la media (promedio) de 3 números.\n");
-        printf("3. Determinar si un valor numérico positivo es par o impar.\n");
-        printf("4. Determinar si un alumno aprobó una materia.\n");
+        printf("Menu:\n");
+        printf("1. Hallar tres numeros consecutivos cuya suma sea 87.\n");
+        printf("2. Calcular la media (promedio) de 3 numeros.\n");
+        printf("3. Determinar si un valor numerico positivo es par o impar.\n");
+        printf("4. Determinar si un alumno aprobo una materia.\n");
         printf("5. Determinar el resultado de una nota.\n");
         printf("6. Calcular el impuesto por concepto de alquiler.\n");
         printf("0. Salir.\n");
-        printf("Ingrese una opción: ");
+        printf("Ingrese una opcion: ");
         scanf("%d", &opcion);
         
         switch (opcion) {
             case 1: {
-                int numero;
-                int num1, num2, num3;
-                int suma;
-                
-                printf("Ingrese un número: ");
-                scanf("%d", &numero);
-                
-                for (num1 = numero; num1 <= numero - 2; num1++) {
-                    num2 = num1 + 1;
-                    num3 = num2 + 1;
-                    suma = num1 + num2 + num3;
-                    
-                    if (suma == 87) {
-                        printf("Los números consecutivos son: %d, %d, %d\n", num1, num2, num3);
-                        break;
-                    }
-                }
-                
-                if (suma != 87) {
-                    printf("No se encontraron números consecutivos cuya suma sea 87.\n");
-                }
-                
+			    int x;
+			    
+			    printf("Ingrese un numero: ");
+			    scanf("%d", &x);
+			    
+			    if ((x + (x + 1) + (x + 2)) == 87) {
+			        printf("Los numeros consecutivos son: %d, %d, %d\n", x, x + 1, x + 2);
+			    } else {
+			        printf("No se encontraron numeros consecutivos cuya suma sea 87.\n");
+			    }
+    
                 break;
             }
             
@@ -46,7 +35,7 @@ int main() {
                 float num1, num2, num3;
                 float promedio;
                 
-                printf("Ingrese los tres números: ");
+                printf("Ingrese los tres numeros: ");
                 scanf("%f %f %f", &num1, &num2, &num3);
                 
                 promedio = (num1 + num2 + num3) / 3;
@@ -59,17 +48,17 @@ int main() {
             case 3: {
                 int numero;
                 
-                printf("Ingrese un número positivo: ");
+                printf("Ingrese un numero positivo: ");
                 scanf("%d", &numero);
                 
                 if (numero > 0) {
                     if (numero % 2 == 0) {
-                        printf("El número es par.\n");
+                        printf("El numero es par.\n");
                     } else {
-                        printf("El número es impar.\n");
+                        printf("El numero es impar.\n");
                     }
                 } else {
-                    printf("El número no es positivo.\n");
+                    printf("El numero no es positivo.\n");
                 }
                 
                 break;
@@ -85,9 +74,9 @@ int main() {
                 promedio = (nota1 + nota2 + nota3 + nota4 + tarea) / 5;
                 
                 if (promedio >= 6) {
-                    printf("El alumno aprobó la materia.\n");
+                    printf("El alumno aprobo la materia.\n");
                 } else {
-                    printf("El alumno no aprobó la materia.\n");
+                    printf("El alumno no aprobo la materia.\n");
                 }
                 
                 break;
@@ -106,7 +95,7 @@ int main() {
                         printf("¡Felicitaciones!\n");
                     }
                 } else if (nota == 1) {
-                    printf("Debes esforzarte más.\n");
+                    printf("Debes esforzarte mas.\n");
                 } else {
                     printf("Reprobado.\n");
                 }
@@ -138,12 +127,12 @@ int main() {
                 break;
             }
             
-            case0:
+            case 0:
                 printf("Saliendo del programa...\n");
                 break;
                 
             default:
-                printf("Opción inválida. Por favor, seleccione una opción válida.\n");
+                printf("Opcion invalida. Por favor, seleccione una opcion valida.\n");
         }
         
         printf("\n");
