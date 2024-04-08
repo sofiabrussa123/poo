@@ -1,30 +1,5 @@
 #include<stdio.h>
 
-/*
-1-Un alumno desea saber cuál será su calificación final, dicha calificación se compone de los siguientes porcentajes:
-55% 		del promedio final de sus calificaciones (de sus  3 evaluaciones parciales)
-30% 		de la calificación de promedio
-15% 		de la calificación de un trabajo final
-
-2-Una tienda ofrece un descuento del 15% sobre el total de la compra, 
-y un cliente desea saber cuánto deberá pagar finalmente por su compra.
-
-3-Generar el valor absoluto de un número dado como entrada.
-Valor absoluto o módulo1 de un número real es su valor numérico sin tener en cuenta su signo, 
-sea este positivo (+) o negativo (-). 
-Así, por ejemplo, 3 es el valor absoluto de +3 y de -3.
-El valor absoluto está relacionado con las nociones de magnitud, distancia y norma en diferentes contextos matemáticos y físicos.
-
-4-Un maestro desea saber qué porcentaje de hombres y que porcentaje de mujeres hay en un grupo de estudiantes.
-
-5-Dada una cantidad en pesos argentinos, obtener la equivalencia en dólares estadounidenses, 
-asumiendo que la unidad cambiaría es un dato desconocido.
-
-6-Calcular la FCM para cualquier persona, sabiendo que ésta es la fórmula de la Frecuencia cardíaca máxima por géneros: 
-Para hombres FCmax = ((210 – (0,5 * edad en años)) – 1% del peso) + 4
-Para mujeres FCmax = (210 – (0,5 * edad en años)) - 1% del peso
-*/
-
 float porcentaje(float a, float b, float c){
     float per;
 
