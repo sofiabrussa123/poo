@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+main() {
+/*
+hacer los programas dentro de un do while y un switch:
+
+1.Se solicita el ingreso de un año y nos informe si es bisiesto o no. un año es bisiesto bajo las siguientes circustancias:
+  a. un año divisble por 4 es bisiesto.
+  b. si un año es divisible entre 100 y ademas es divisible entre 400, tambien resulta bisiesto.
+
+2.Se solicita el ingreso de un numero, verificar que sea entero y positivo.
+  a. mostrar por pantalla su tabla de multiplicar (del 1 al 10).
+
+3.Se necesita un programa que informe el pago a realizar por la entrada a un espectaculo 
+donde solo se pueden comprar hasta 4 entradas. el costo de dos entradas se les descuenta el 10%, 
+al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%.
+*/
+
+int anio;
+  
+  printf("Ingrese un año:"); //Se solicita el ingreso de un año
+  scanf("%d", & anio); //Se lee el año ingresado
+  
+if (anio % 4 == 0) { //Se verifica si el año es divisible por 4
+  printf("El año es bisiesto"); //Si es divisible por 4, se imprime el mensaje
+  }
+else if (anio % 100 == 0 && anio % 400 == 0){ //Se verifica si el año es divisible por 100 y ademas es divisible por 400
+  printf("El año es bisiesto"); //Si es divisible por 100 y 400, se imprime el mensaje
+  }
+else { //Si no se cumple ninguna de las condiciones anteriores, el año no es bisiesto
+  printf("El año no es bisiesto"); //Se imprime el mensaje
+  }
+
+  return 0;
+}
