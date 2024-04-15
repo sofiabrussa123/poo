@@ -72,8 +72,6 @@ do {
             }
             break;
         case 4:
-          
-        case 4:
             printf("Ingrese la cantidad de personas: \n"); // Se solicita la cantidad de personas
             scanf("%d", &numPersonas); // Se lee la cantidad de personas
 
@@ -102,8 +100,6 @@ do {
 } while (opcion != 0);
   }
 /*
-hacer los programas dentro de un do while y un switch en español:
-
 1.Se solicita el ingreso de un año y nos informe si es bisiesto o no. un año es bisiesto bajo las siguientes circustancias:
   a. un año divisble por 4 es bisiesto.
   b. si un año es divisible entre 100 y ademas es divisible entre 400, tambien resulta bisiesto.
@@ -117,5 +113,8 @@ al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%. (ingresar pre
 
 4.Una empresa dedicada al catering, tiene las siguientes tarifas: el costo de cada plato por persona es de $6500.-, pero si el número de personas es mayor a 200 pero menor o igual a 300, el costo es de $5500.- Para más de 300 personas el costo es de $4500.- En base a la cantidad de personas y el costo por cada plato, calcular el costo total del servicio.
 
-5.La asociación de vinicultores tiene como política fijar un precio inicial al kilo de uva, la cual se clasifica en tipos A y B, y además en tamaños 1 y 2. Cuando se realiza la venta del producto, éste es de un solo tipo y tamaño. Se necesita determinar cuánto recibirá un productor por la uva que entrega en un embarque, considerando si es de tipo A, su precio es  $ 200 para el tamaño 1 y de $ 300.- para el tamaño 2. Si es de tipo B, su precio es $ 300.- cuando es de tamaño 1, y $ 500.- cuando es de tamaño 2.
+5.La asociación de vinicultores tiene como política fijar un precio inicial al kilo de uva, la cual se clasifica en tipos A y B, y además en tamaños 1 y 2. Cuando se realiza la venta del producto, éste es de un solo tipo y tamaño. Se necesita determinar cuánto recibirá un productor por la uva que entrega en un embarque, considerando si es de: 
+tipo A, su precio es  $ 200 para el tamaño 1 y de $ 300 para el tamaño 2. 
+Si es de tipo B, su precio es $ 300. cuando es de tamaño 1, y $ 500. cuando es de tamaño 2.
 */
+
