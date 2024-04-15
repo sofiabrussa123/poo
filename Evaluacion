@@ -1,3 +1,22 @@
+/*
+1.Se solicita el ingreso de un año y nos informe si es bisiesto o no. un año es bisiesto bajo las siguientes circustancias:
+  a. un año divisble por 4 es bisiesto.
+  b. si un año es divisible entre 100 y ademas es divisible entre 400, tambien resulta bisiesto.
+
+2.Se solicita el ingreso de un numero, verificar que sea entero y positivo.
+  a. mostrar por pantalla su tabla de multiplicar (del 1 al 10).
+
+3.Se necesita un programa que informe el pago a realizar por la entrada a un espectaculo 
+donde solo se pueden comprar hasta 4 entradas. el costo de dos entradas se les descuenta el 10%, 
+al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%. (ingresar precio de entrada)
+
+4.Una empresa dedicada al catering, tiene las siguientes tarifas: el costo de cada plato por persona es de $6500.-, pero si el número de personas es mayor a 200 pero menor o igual a 300, el costo es de $5500.- Para más de 300 personas el costo es de $4500.- En base a la cantidad de personas y el costo por cada plato, calcular el costo total del servicio.
+
+5.La asociación de vinicultores tiene como política fijar un precio inicial al kilo de uva, la cual se clasifica en tipos A y B, y además en tamaños 1 y 2. Cuando se realiza la venta del producto, éste es de un solo tipo y tamaño. Se necesita determinar cuánto recibirá un productor por la uva que entrega en un embarque, considerando si es de: 
+tipo A, su precio es  $ 200 para el tamaño 1 y de $ 300 para el tamaño 2. 
+Si es de tipo B, su precio es $ 300. cuando es de tamaño 1, y $ 500. cuando es de tamaño 2.
+*/
+
 #include <stdio.h>
 
 int main(){
@@ -8,6 +27,10 @@ int main(){
   int cantidadEntradas;
   float precioEntrada;
   int numPersonas;
+  char tipoUva;
+  int tamanoUva;
+  float precioUva;
+  float cantidadUva;
   
 do {
   printf("-------------------------------\n");
@@ -89,7 +112,38 @@ do {
             }
             break;
         case 5:
+            printf("Ingrese los kilos de uvas a entregar: \n");
+            scanf(" %f", & cantidadUva);
+            printf("Ingrese el tipo de uva (a o b): \n"); // Se solicita el tipo de uva
+            scanf(" %c", & tipoUva); // Se lee el tipo de uva
+            
+            printf("Ingrese el tamaño de la uva (1 o 2): \n"); // Se solicita el tamaño de la uva
+            scanf("%d", & tamanoUva); // Se lee el tamaño de la uva
 
+            if (tipoUva == 'a') { // Si el tipo de uva es a
+                if (tamanoUva == 1) { // Si el tamaño de la uva es 1
+                    precioUva = 200 * cantidadUva; 
+                } else if (tamanoUva == 2) { // Si el tamaño de la uva es 2
+                    precioUva = 300 * cantidadUva; 
+                }
+                else { // Si el tipo de uva es b
+                    printf("Tamaño de uva no válido. Por favor, seleccione 1 o 2.\n"); // Se informa que el tamaño de uva no es válido
+                }
+                }else if (tipoUva == 'b') { // Si el tipo de uva es b
+                if (tamanoUva == 1) { // Si el tamaño de la uva es 1
+                    precioUva = 300 * cantidadUva; 
+                } else if (tamanoUva == 2) { // Si el tamaño de la uva es 2
+                    precioUva = 500 * cantidadUva; 
+                }
+             
+                else {
+                    printf("Tamaño de uva no válido. Por favor, seleccione 1 o 2.\n"); // Se informa que el tamaño de uva no es válido
+                }
+            } else {
+                printf("Tipo de uva no válido. Por favor, seleccione a o b.\n"); // Se informa que el tipo de uva no es válido
+            }
+
+            printf("Precio a recibir por la entrega de uva: $%.2f\n", precioUva); // Se muestra el precio a recibir por la entrega de uva
             break;
         case 0:
             printf("Salir del programa");
@@ -97,24 +151,7 @@ do {
         default:
             printf("Opción no válida. Intente nuevamente.\n");
     }
-} while (opcion != 0);
+} while (opcion != 0); // Se repite el ciclo hasta que se seleccione la opción 0 (parar de ejecutar)
   }
-/*
-1.Se solicita el ingreso de un año y nos informe si es bisiesto o no. un año es bisiesto bajo las siguientes circustancias:
-  a. un año divisble por 4 es bisiesto.
-  b. si un año es divisible entre 100 y ademas es divisible entre 400, tambien resulta bisiesto.
 
-2.Se solicita el ingreso de un numero, verificar que sea entero y positivo.
-  a. mostrar por pantalla su tabla de multiplicar (del 1 al 10).
-
-3.Se necesita un programa que informe el pago a realizar por la entrada a un espectaculo 
-donde solo se pueden comprar hasta 4 entradas. el costo de dos entradas se les descuenta el 10%, 
-al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%. (ingresar precio de entrada)
-
-4.Una empresa dedicada al catering, tiene las siguientes tarifas: el costo de cada plato por persona es de $6500.-, pero si el número de personas es mayor a 200 pero menor o igual a 300, el costo es de $5500.- Para más de 300 personas el costo es de $4500.- En base a la cantidad de personas y el costo por cada plato, calcular el costo total del servicio.
-
-5.La asociación de vinicultores tiene como política fijar un precio inicial al kilo de uva, la cual se clasifica en tipos A y B, y además en tamaños 1 y 2. Cuando se realiza la venta del producto, éste es de un solo tipo y tamaño. Se necesita determinar cuánto recibirá un productor por la uva que entrega en un embarque, considerando si es de: 
-tipo A, su precio es  $ 200 para el tamaño 1 y de $ 300 para el tamaño 2. 
-Si es de tipo B, su precio es $ 300. cuando es de tamaño 1, y $ 500. cuando es de tamaño 2.
-*/
 
