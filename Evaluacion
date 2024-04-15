@@ -6,6 +6,8 @@ int main(){
   int anio;
   int numero;
   int cantidadEntradas;
+  float precioEntrada;
+  int numPersonas;
   
 do {
   printf("-------------------------------\n");
@@ -50,8 +52,9 @@ do {
         case 3:
             printf("Ingrese cantidad de entradas (máximo 4): \n"); // Se solicita la cantidad de entradas
             scanf("%d", &cantidadEntradas); // Se lee la cantidad de entradas
-            
-            float precioEntrada = 100.00; // Precio de cada entrada
+
+            printf("Ingrese el precio de la entrada: \n");
+            scanf("%f", & precioEntrada);
             
             if (cantidadEntradas == 1) {
                 printf("Total a pagar: $%.2f\n", precioEntrada); // Si compra una entrada, se muestra el precio sin descuento
@@ -69,7 +72,23 @@ do {
             }
             break;
         case 4:
+          
+        case 4:
+            printf("Ingrese la cantidad de personas: \n"); // Se solicita la cantidad de personas
+            scanf("%d", &numPersonas); // Se lee la cantidad de personas
 
+            if (numPersonas > 0 && numPersonas <= 200) {
+                float costoTotal = numPersonas * 6500; // Costo total para menos de 200 personas
+                printf("Costo total del servicio: $%.2f\n", costoTotal);
+            } else if (numPersonas > 200 && numPersonas <= 300) {
+                float costoTotal = numPersonas * 5500; // Costo total para 201-300 personas
+                printf("Costo total del servicio: $%.2f\n", costoTotal);
+            } else if (numPersonas > 300) {
+                float costoTotal = numPersonas * 4500; // Costo total para más de 300 personas
+                printf("Costo total del servicio: $%.2f\n", costoTotal);
+            } else {
+                printf("Cantidad de personas inválida. Por favor, ingrese un número válido.\n");
+            }
             break;
         case 5:
 
@@ -94,9 +113,9 @@ hacer los programas dentro de un do while y un switch en español:
 
 3.Se necesita un programa que informe el pago a realizar por la entrada a un espectaculo 
 donde solo se pueden comprar hasta 4 entradas. el costo de dos entradas se les descuenta el 10%, 
-al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%.
+al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%. (ingresar precio de entrada)
 
-4.Una empresa dedicada al catering, tiene las siguientes tarifas: el costo de cada plato por persona es de $6500.-, pero si el número de personas es mayor a 200 pero menor o igual a 300, el costo es de $5500.- Para más de 300 personas el costo es de $4500.- 
+4.Una empresa dedicada al catering, tiene las siguientes tarifas: el costo de cada plato por persona es de $6500.-, pero si el número de personas es mayor a 200 pero menor o igual a 300, el costo es de $5500.- Para más de 300 personas el costo es de $4500.- En base a la cantidad de personas y el costo por cada plato, calcular el costo total del servicio.
 
 5.La asociación de vinicultores tiene como política fijar un precio inicial al kilo de uva, la cual se clasifica en tipos A y B, y además en tamaños 1 y 2. Cuando se realiza la venta del producto, éste es de un solo tipo y tamaño. Se necesita determinar cuánto recibirá un productor por la uva que entrega en un embarque, considerando si es de tipo A, su precio es  $ 200 para el tamaño 1 y de $ 300.- para el tamaño 2. Si es de tipo B, su precio es $ 300.- cuando es de tamaño 1, y $ 500.- cuando es de tamaño 2.
 */
