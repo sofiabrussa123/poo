@@ -1,8 +1,89 @@
 #include <stdio.h>
 
-main() {
+int main(){
+
+  int opcion;
+  int anio;
+  int numero;
+  int cantidadEntradas;
+  
+do {
+  printf("-------------------------------\n");
+    printf("1. Verificar si un año es bisiesto.\n");
+    printf("2. Mostrar tabla de multiplicar de un numero.\n");
+    printf("3. Calcular el costo de las entradas a un espectaculo.\n");
+    printf("4. Calcular el costo del catering por persona.\n");
+    printf("5. Calcular el precio a pagar por una entrega de uva.\n");
+    printf("0. Parar de ejecutar.\n");
+  printf("-------------------------------\n");
+    printf("Seleccione una opcion para ejecutar un programa:");
+    scanf("%d", &opcion);
+
+    switch (opcion) {
+        case 1:
+            printf("Ingrese un año: \n"); //Se solicita el ingreso de un año
+            scanf("%d", & anio); //Se lee el año ingresado
+
+          if (anio % 4 == 0) { //Se verifica si el año es divisible por 4
+            printf("El año es bisiesto \n"); //Si es divisible por 4, se imprime el mensaje
+            }
+          else if (anio % 100 == 0 && anio % 400 == 0){ //Se verifica si el año es divisible por 100 y ademas es divisible por 400
+            printf("El año es bisiesto \n"); //Si es divisible por 100 y 400, se imprime el mensaje
+            }
+          else { //Si no se cumple ninguna de las condiciones anteriores, el año no es bisiesto
+            printf("El año no es bisiesto \n"); //Se imprime el mensaje
+            }
+            break;
+        case 2:
+            printf("Ingrese un numero entero y positivo: \n"); // Se solicita el ingreso de un numero
+            scanf("%d", &numero); // Se lee el numero ingresado
+  
+            if (numero <= 0) { // Se verifica si el numero ingresado es entero y positivo
+                printf("El numero ingresado no es entero y positivo. \n"); // Se informa que el numero no cumple con el requisito
+            } else {
+                printf("Tabla de multiplicar de %d:\n", numero); // Se imprime la cabecera de la tabla de multiplicar
+                for (int i = 1; i <= 10; i++) {
+                    printf("%d x %d = %d\n", numero, i, numero * i); // Se muestra cada multiplicacion de la tabla
+                }
+            }
+            break;
+        case 3:
+            printf("Ingrese cantidad de entradas (máximo 4): \n"); // Se solicita la cantidad de entradas
+            scanf("%d", &cantidadEntradas); // Se lee la cantidad de entradas
+            
+            float precioEntrada = 100.00; // Precio de cada entrada
+            
+            if (cantidadEntradas == 1) {
+                printf("Total a pagar: $%.2f\n", precioEntrada); // Si compra una entrada, se muestra el precio sin descuento
+            } else if (cantidadEntradas == 2) {
+                float total = cantidadEntradas * precioEntrada * 0.9; // Descuento del 10% para dos entradas
+                printf("Total a pagar con descuento del 10%%: $%.2f\n", total);
+            } else if (cantidadEntradas == 3) {
+                float total = cantidadEntradas * precioEntrada * 0.85; // Descuento del 15% para tres entradas
+                printf("Total a pagar con descuento del 15%%: $%.2f\n", total);
+            } else if (cantidadEntradas == 4) {
+                float total = cantidadEntradas * precioEntrada * 0.8; // Descuento del 20% para cuatro entradas
+                printf("Total a pagar con descuento del 20%%: $%.2f\n", total);
+            } else {
+                printf("Cantidad de entradas inválida. Por favor, seleccione entre 1 y 4 entradas.\n");
+            }
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 0:
+            printf("Salir del programa");
+            break;
+        default:
+            printf("Opción no válida. Intente nuevamente.\n");
+    }
+} while (opcion != 0);
+  }
 /*
-hacer los programas dentro de un do while y un switch:
+hacer los programas dentro de un do while y un switch en español:
 
 1.Se solicita el ingreso de un año y nos informe si es bisiesto o no. un año es bisiesto bajo las siguientes circustancias:
   a. un año divisble por 4 es bisiesto.
@@ -14,22 +95,8 @@ hacer los programas dentro de un do while y un switch:
 3.Se necesita un programa que informe el pago a realizar por la entrada a un espectaculo 
 donde solo se pueden comprar hasta 4 entradas. el costo de dos entradas se les descuenta el 10%, 
 al de 3 se les descuenta un 15% y al de 4 se les descuenta un 20%.
+
+4.Una empresa dedicada al catering, tiene las siguientes tarifas: el costo de cada plato por persona es de $6500.-, pero si el número de personas es mayor a 200 pero menor o igual a 300, el costo es de $5500.- Para más de 300 personas el costo es de $4500.- 
+
+5.La asociación de vinicultores tiene como política fijar un precio inicial al kilo de uva, la cual se clasifica en tipos A y B, y además en tamaños 1 y 2. Cuando se realiza la venta del producto, éste es de un solo tipo y tamaño. Se necesita determinar cuánto recibirá un productor por la uva que entrega en un embarque, considerando si es de tipo A, su precio es  $ 200 para el tamaño 1 y de $ 300.- para el tamaño 2. Si es de tipo B, su precio es $ 300.- cuando es de tamaño 1, y $ 500.- cuando es de tamaño 2.
 */
-
-int anio;
-  
-  printf("Ingrese un año:"); //Se solicita el ingreso de un año
-  scanf("%d", & anio); //Se lee el año ingresado
-  
-if (anio % 4 == 0) { //Se verifica si el año es divisible por 4
-  printf("El año es bisiesto"); //Si es divisible por 4, se imprime el mensaje
-  }
-else if (anio % 100 == 0 && anio % 400 == 0){ //Se verifica si el año es divisible por 100 y ademas es divisible por 400
-  printf("El año es bisiesto"); //Si es divisible por 100 y 400, se imprime el mensaje
-  }
-else { //Si no se cumple ninguna de las condiciones anteriores, el año no es bisiesto
-  printf("El año no es bisiesto"); //Se imprime el mensaje
-  }
-
-  return 0;
-}
