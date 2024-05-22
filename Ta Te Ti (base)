@@ -1,0 +1,153 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char tablero[3][3];
+
+void inicializar_tablero() {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            tablero[i][j] = ' ';
+        }
+    }
+}
+
+void limpiar_pantalla() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+void imprimir_tablero() {
+    limpiar_pantalla();
+    printf("    0   1   2\n");
+    printf("  +---+---+---+\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%d |", i);
+        for (int j = 0; j < 3; j++) {
+            printf(" %c |", tablero[i][j]);
+        }
+        printf("\n");
+        if (i < 2) {
+            printf("  +---+---+---+\n");
+        }
+    }
+    printf("  +---+---+---+\n\n");
+}
+
+int verificar_ganador() {
+    // Verificar filas
+    for (int i = 0; i < 3; i++) {
+        if (tablero[i][0] == tablero[i][1] && tablero[i][1] == tablero[i][2] && tablero[i][0] != ' ') {
+            return 1;
+        }
+    }
+    // Verificar columnas
+    for (int j = 0; j < 3; j++) {
+        if (tablero[0][j] == tablero[1][j] && tablero[1][j] == tablero[2][j] && tablero[0][j] != ' ') {
+            return 1;
+        }
+    }
+    // Verificar diagonales
+    if ((tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2] && tablero[0][0] != ' ') || 
+        (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0] && tablero[0][2] != ' ')) {
+        return 1;
+    }
+    // Verificar si el tablero está lleno
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (tablero[i][j] == ' ') {
+                return 0; // Si alguna posición está vacía, el juego continúa
+            }
+        }
+    }
+    return 2; // Empate
+}
+
+void mostrar_menu() {
+    printf("Bienvenido al juego de 3 en línea\n");
+    printf("Reglas del juego:\n");
+    printf("1. Dos jugadores toman turnos para colocar su símbolo (X u O) en una casilla vacía del tablero.\n");
+    printf("2. El objetivo es colocar tres de tus símbolos en una fila, columna o diagonal.\n");
+    printf("3. El primer jugador en lograrlo, gana.\n");
+    printf("4. Si todas las casillas se llenan y nadie ha ganado, el juego termina en empate.\n\n");
+}
+
+void guardar_puntaje(const char* nombre, int ganador) {
+    char archivo[50];
+    sprintf(archivo, "%s_puntaje.txt", nombre);
+    FILE *file = fopen(archivo, "a");
+    if (file != NULL) {
+        fprintf(file, "Ganador: %d\n", ganador);
+        fclose(file);
+    } else {
+        printf("Error al abrir el archivo para guardar el puntaje.\n");
+    }
+}
+
+int jugar_de_nuevo() {
+    char respuesta;
+    printf("¿Quieres jugar de nuevo? (s/n): ");
+    while (getchar() != '\n'); // Limpiar el buffer de entrada
+    scanf("%c", &respuesta);
+    return (respuesta == 's' || respuesta == 'S');
+}
+
+int main() {
+    char jugador1[50], jugador2[50];
+    printf("Ingrese el nombre del Jugador 1 (X): ");
+    scanf("%s", jugador1);
+    printf("Ingrese el nombre del Jugador 2 (O): ");
+    scanf("%s", jugador2);
+
+    mostrar_menu();
+
+    int fila, col;
+    char jugador;
+    int juego_terminado;
+
+    do {
+        inicializar_tablero();
+        jugador = 'X';
+        juego_terminado = 0;
+
+        while (!juego_terminado) {
+            imprimir_tablero();
+
+            int movimiento_valido = 0;
+            while (!movimiento_valido) {
+                printf("Jugador %c (%s), ingrese fila (0-2) y columna (0-2) para colocar su simbolo: ", jugador, (jugador == 'X') ? jugador1 : jugador2);
+                int resultado = scanf("%d %d", &fila, &col);
+
+                if (resultado != 2 || fila < 0 || fila > 2 || col < 0 || col > 2 || tablero[fila][col] != ' ') {
+                    printf("Movimiento invalido. Intente de nuevo.\n");
+                    while (getchar() != '\n'); // Limpiar el buffer de entrada
+                } else {
+                    movimiento_valido = 1;
+                }
+            }
+
+            tablero[fila][col] = jugador;
+
+            int resultado = verificar_ganador();
+            if (resultado == 1) {
+                imprimir_tablero();
+                printf("¡Jugador %c (%s) gana!\n", jugador, (jugador == 'X') ? jugador1 : jugador2);
+                guardar_puntaje((jugador == 'X') ? jugador1 : jugador2, 1);
+                juego_terminado = 1;
+            } else if (resultado == 2) {
+                imprimir_tablero();
+                printf("¡Es un empate!\n");
+                guardar_puntaje(jugador1, 0);
+                guardar_puntaje(jugador2, 0);
+                juego_terminado = 1;
+            }
+
+            jugador = (jugador == 'X') ? 'O' : 'X';
+        }
+    } while (jugar_de_nuevo());
+
+    return 0;
+}
