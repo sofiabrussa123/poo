@@ -2,70 +2,76 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Declaración de una matriz global 3x3 para representar el tablero del juego.
 char tablero[3][3];
 
+// Función para inicializar el tablero llenando todas las posiciones con espacios en blanco (' ').
 void inicializar_tablero() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            tablero[i][j] = ' ';
+            tablero[i][j] = ' ';  // Colocar un espacio en blanco en cada posición.
         }
     }
 }
 
+// Función para limpiar la pantalla. Utiliza comandos específicos según el sistema operativo.
 void limpiar_pantalla() {
     #ifdef _WIN32
-        system("cls");
+        system("cls");  // Comando para limpiar la pantalla en Windows.
     #else
-        system("clear");
+        system("clear");  // Comando para limpiar la pantalla en Unix/Linux/MacOS.
     #endif
 }
 
+// Función para imprimir el estado actual del tablero en la pantalla.
 void imprimir_tablero() {
-    limpiar_pantalla();
-    printf("    0   1   2\n");
-    printf("  +---+---+---+\n");
+    limpiar_pantalla();  // Limpiar la pantalla antes de imprimir el tablero.
+    printf("    0   1   2\n");  // Imprimir encabezado de columnas.
+    printf("  +───+───+───+\n");
     for (int i = 0; i < 3; i++) {
-        printf("%d |", i);
+        printf("%d |", i);  // Imprimir número de fila.
         for (int j = 0; j < 3; j++) {
-            printf(" %c |", tablero[i][j]);
+            printf(" %c |", tablero[i][j]);  // Imprimir el contenido de cada celda del tablero.
         }
         printf("\n");
-        if (i < 2) {
-            printf("  +---+---+---+\n");
+        if (i < 2) {  // Imprimir línea de separación entre filas, excepto después de la última fila.
+            printf("  +───+───+───+\n");
         }
     }
-    printf("  +---+---+---+\n\n");
+    printf("  +───+───+───+\n\n");  // Línea final del tablero.
 }
 
+// Función para verificar si hay un ganador o si el juego ha terminado en empate.
 int verificar_ganador() {
-    // Verificar filas
+    // Verificar cada fila para ver si hay tres símbolos iguales y no vacíos.
     for (int i = 0; i < 3; i++) {
         if (tablero[i][0] == tablero[i][1] && tablero[i][1] == tablero[i][2] && tablero[i][0] != ' ') {
-            return 1;
+            return 1;  // Si hay tres símbolos iguales en una fila, hay un ganador.
         }
     }
-    // Verificar columnas
+    // Verificar cada columna para ver si hay tres símbolos iguales y no vacíos.
     for (int j = 0; j < 3; j++) {
         if (tablero[0][j] == tablero[1][j] && tablero[1][j] == tablero[2][j] && tablero[0][j] != ' ') {
-            return 1;
+            return 1;  // Si hay tres símbolos iguales en una columna, hay un ganador.
         }
     }
-    // Verificar diagonales
+    // Verificar ambas diagonales para ver si hay tres símbolos iguales y no vacíos.
     if ((tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2] && tablero[0][0] != ' ') || 
         (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0] && tablero[0][2] != ' ')) {
-        return 1;
+        return 1;  // Si hay tres símbolos iguales en una diagonal, hay un ganador.
     }
-    // Verificar si el tablero está lleno
+    // Verificar si hay alguna celda vacía en el tablero.
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (tablero[i][j] == ' ') {
-                return 0; // Si alguna posición está vacía, el juego continúa
+                return 0;  // El juego continúa si hay al menos una celda vacía.
             }
         }
     }
-    return 2; // Empate
+    return 2;  // Si no hay ganadores y no hay celdas vacías, es un empate.
 }
 
+// Función para mostrar el menú del juego con las reglas.
 void mostrar_menu() {
     printf("Bienvenido al juego de 3 en línea\n");
     printf("Reglas del juego:\n");
@@ -75,79 +81,112 @@ void mostrar_menu() {
     printf("4. Si todas las casillas se llenan y nadie ha ganado, el juego termina en empate.\n\n");
 }
 
-void guardar_puntaje(const char* nombre, int ganador) {
+// Función para guardar el puntaje del jugador en un archivo de texto.
+void guardar_puntaje(const char* nombre, int ganado) {
     char archivo[50];
-    sprintf(archivo, "%s_puntaje.txt", nombre);
-    FILE *file = fopen(archivo, "a");
+    sprintf(archivo, "%s_puntaje.txt", nombre);  // Crear el nombre del archivo con el nombre del jugador.
+
+    FILE *file = fopen(archivo, "r");  // Intentar abrir el archivo en modo lectura.
     if (file != NULL) {
-        fprintf(file, "Ganador: %d\n", ganador);
+        // El archivo ya existe.
         fclose(file);
+        printf("El archivo de puntaje para %s ya existe.\n", nombre);
     } else {
-        printf("Error al abrir el archivo para guardar el puntaje.\n");
+        // El archivo no existe, proceder a crearlo y escribir los puntajes.
+        file = fopen(archivo, "w+");  // Crear el archivo si no existe.
+        if (file == NULL) {
+            printf("Error al abrir el archivo para guardar el puntaje.\n");
+            return;
+        }
+        fprintf(file, "Ganadas: 0\nPerdidas: 0\n");  // Inicializar el archivo si es nuevo.
+        fclose(file);
     }
+
+    // Reabrir el archivo en modo lectura/escritura para actualizar los puntajes.
+    file = fopen(archivo, "r+");
+    int ganadas = 0, perdidas = 0;
+    fscanf(file, "Ganadas: %d\nPerdidas: %d\n", &ganadas, &perdidas);  // Leer el puntaje actual.
+
+    if (ganado) {
+        ganadas++;  // Incrementar partidas ganadas.
+    } else {
+        perdidas++;  // Incrementar partidas perdidas.
+    }
+
+    rewind(file);  // Volver al principio del archivo para escribir.
+    fprintf(file, "Ganadas: %d\nPerdidas: %d\n", ganadas, perdidas);  // Escribir los nuevos puntajes.
+    fclose(file);  // Cerrar el archivo.
 }
 
+// Función para preguntar al usuario si desea jugar de nuevo.
 int jugar_de_nuevo() {
     char respuesta;
     printf("¿Quieres jugar de nuevo? (s/n): ");
-    while (getchar() != '\n'); // Limpiar el buffer de entrada
-    scanf("%c", &respuesta);
-    return (respuesta == 's' || respuesta == 'S');
+    while (getchar() != '\n');  // Limpiar el buffer de entrada.
+    scanf("%c", &respuesta);  // Leer la respuesta del usuario.
+    return (respuesta == 's' || respuesta == 'S');  // Retornar 1 si la respuesta es 's' o 'S'.
 }
 
+// Función principal del programa.
 int main() {
     char jugador1[50], jugador2[50];
     printf("Ingrese el nombre del Jugador 1 (X): ");
-    scanf("%s", jugador1);
+    scanf("%s", jugador1);  // Leer el nombre del Jugador 1.
     printf("Ingrese el nombre del Jugador 2 (O): ");
-    scanf("%s", jugador2);
+    scanf("%s", jugador2);  // Leer el nombre del Jugador 2.
 
-    mostrar_menu();
+    mostrar_menu();  // Mostrar el menú con las reglas del juego.
 
     int fila, col;
-    char jugador;
-    int juego_terminado;
+    char jugador;  // Variable para controlar el símbolo del jugador actual ('X' o 'O').
+    int juego_terminado;  // Variable para controlar si el juego ha terminado.
 
     do {
-        inicializar_tablero();
-        jugador = 'X';
-        juego_terminado = 0;
+        inicializar_tablero();  // Inicializar el tablero.
+        jugador = 'X';  // Comenzar con el jugador 'X'.
+        juego_terminado = 0;  // Inicialmente el juego no ha terminado.
 
+        // Bucle principal del juego.
         while (!juego_terminado) {
-            imprimir_tablero();
+            imprimir_tablero();  // Imprimir el tablero.
 
             int movimiento_valido = 0;
             while (!movimiento_valido) {
-                printf("Jugador %c (%s), ingrese fila (0-2) y columna (0-2) para colocar su simbolo: ", jugador, (jugador == 'X') ? jugador1 : jugador2);
-                int resultado = scanf("%d %d", &fila, &col);
+                // Solicitar al jugador que ingrese la fila y columna para su movimiento.
+                printf("Jugador %c (%s), ingrese fila (0-2) y columna (0-2) para colocar su símbolo: ", jugador, (jugador == 'X') ? jugador1 : jugador2);
+                int resultado = scanf("%d %d", &fila, &col);  // Leer la fila y columna ingresadas.
 
+                // Verificar si el movimiento es válido.
                 if (resultado != 2 || fila < 0 || fila > 2 || col < 0 || col > 2 || tablero[fila][col] != ' ') {
-                    printf("Movimiento invalido. Intente de nuevo.\n");
-                    while (getchar() != '\n'); // Limpiar el buffer de entrada
+                    printf("Movimiento inválido. Intente de nuevo.\n");
+                    while (getchar() != '\n');  // Limpiar el buffer de entrada.
                 } else {
-                    movimiento_valido = 1;
+                    movimiento_valido = 1;  // El movimiento es válido.
                 }
             }
 
-            tablero[fila][col] = jugador;
+            tablero[fila][col] = jugador;  // Colocar el símbolo del jugador en la posición indicada.
 
+            // Verificar si hay un ganador o empate.
             int resultado = verificar_ganador();
             if (resultado == 1) {
                 imprimir_tablero();
                 printf("¡Jugador %c (%s) gana!\n", jugador, (jugador == 'X') ? jugador1 : jugador2);
-                guardar_puntaje((jugador == 'X') ? jugador1 : jugador2, 1);
-                juego_terminado = 1;
+                guardar_puntaje((jugador == 'X') ? jugador1 : jugador2, 1);  // Guardar victoria del jugador.
+                guardar_puntaje((jugador == 'X') ? jugador2 : jugador1, 0);  // Guardar derrota del otro jugador.
+                juego_terminado = 1;  // Terminar el juego.
             } else if (resultado == 2) {
                 imprimir_tablero();
                 printf("¡Es un empate!\n");
-                guardar_puntaje(jugador1, 0);
-                guardar_puntaje(jugador2, 0);
-                juego_terminado = 1;
+                guardar_puntaje(jugador1, 0);  // Guardar empate como derrota para ambos jugadores.
+                guardar_puntaje(jugador2, 0);  // Guardar empate como derrota para ambos jugadores.
+                juego_terminado = 1;  // Terminar el juego.
             }
 
+            // Cambiar al otro jugador.
             jugador = (jugador == 'X') ? 'O' : 'X';
         }
-    } while (jugar_de_nuevo());
+    } while (jugar_de_nuevo());  // Repetir el juego si los jugadores desean jugar de nuevo.
 
     return 0;
 }
