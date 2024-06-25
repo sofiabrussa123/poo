@@ -34,7 +34,7 @@ Abdominales
 horarios 
 1
 2
-3
+3 (horario central)
 4
 5
 
@@ -53,7 +53,7 @@ hacer un menu con el que se va a interactuar para las incripciones (usar colores
 5. salir 
 
 luego de salir efectuar el informe de (hacer un menu aparte que deje elegir que informe ver):
-ganacias por horario y clase
+ganacias del dia por clase
 en que clase no fueron los alumnos
 en que horario no hubo clases
 asistencias por clase
