@@ -1,0 +1,286 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
+import java.lang.Math;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            mostrarMenu(); // Mostrar el menú con descripciones
+            option = sc.nextInt();
+            switch (option) {
+                case 13:
+                    ejercicio13(sc);
+                    break;
+                case 14:
+                    ejercicio14(sc);
+                    break;
+                case 15:
+                    ejercicio15(sc);
+                    break;
+                case 16:
+                    ejercicio16(sc);
+                    break;
+                case 17:
+                    ejercicio17(sc);
+                    break;
+                case 18:
+                    ejercicio18(sc);
+                    break;
+                case 19:
+                    ejercicio19(sc);
+                    break;
+                case 20:
+                    ejercicio20(sc);
+                    break;
+                case 21:
+                    ejercicio21();
+                    break;
+                case 22:
+                    ejercicio22();
+                    break;
+                case 23:
+                    ejercicio23();
+                    break;
+                case 24:
+                    ejercicio24();
+                    break;
+                case 25:
+                    ejercicio25();
+                    break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, elige una opción entre 0 y 25.");
+            }
+        } while (option != 0);
+    }
+
+    // Método para mostrar el menú con descripciones
+    public static void mostrarMenu() {
+        System.out.println("\n*** MENÚ DE EJERCICIOS (13-25) ***");
+        System.out.println("13. Calcular la suma de varias ventas.");
+        System.out.println("14. Resolver una ecuación de segundo grado.");
+        System.out.println("15. Leer un número positivo.");
+        System.out.println("16. Verificar contraseña con tres intentos.");
+        System.out.println("17. Verificar si un día es laboral.");
+        System.out.println("18. Generar números aleatorios entre dos números.");
+        System.out.println("19. Contar cifras de un número entero positivo.");
+        System.out.println("20. Comprobar si un número es primo.");
+        System.out.println("21. Mostrar números primos del 1 al 100.");
+        System.out.println("22. Contar vocales en una frase.");
+        System.out.println("23. Reemplazar caracteres en una frase.");
+        System.out.println("24. Convertir caracteres de una frase a ASCII.");
+        System.out.println("25. Calculadora Polaca Inversa.");
+        System.out.println("0. Salir.");
+        System.out.print("Elige una opción: ");
+    }
+
+    // Ejercicio 13: Calcular la suma de varias ventas
+    public static void ejercicio13(Scanner sc) {
+        System.out.print("Introduce el número de ventas: ");
+        int numVentas = sc.nextInt();
+        double suma = 0;
+        for (int i = 1; i <= numVentas; i++) {
+            System.out.print("Introduce el monto de la venta " + i + ": ");
+            double venta = sc.nextDouble();
+            suma += venta;
+        }
+        System.out.println("La suma de todas las ventas es: " + suma);
+    }
+
+    // Ejercicio 14: Resolver una ecuación de segundo grado
+    public static void ejercicio14(Scanner sc) {
+        System.out.print("Introduce el valor de 'a': ");
+        double a = sc.nextDouble();
+        System.out.print("Introduce el valor de 'b': ");
+        double b = sc.nextDouble();
+        System.out.print("Introduce el valor de 'c': ");
+        double c = sc.nextDouble();
+
+        double discriminante = b * b - 4 * a * c;
+        if (discriminante < 0) {
+            System.out.println("La ecuación no tiene solución real.");
+        } else {
+            double x1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+            double x2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+            System.out.println("Las soluciones son: x1 = " + x1 + ", x2 = " + x2);
+        }
+    }
+
+    // Ejercicio 15: Leer un número positivo
+    public static void ejercicio15(Scanner sc) {
+        int numero;
+        do {
+            System.out.print("Introduce un número mayor o igual que 0: ");
+            numero = sc.nextInt();
+        } while (numero < 0);
+        System.out.println("El número introducido es: " + numero);
+    }
+
+    // Ejercicio 16: Verificar contraseña con tres intentos
+    public static void ejercicio16(Scanner sc) {
+        String contraseña = "contraseña123";
+        int intentos = 3;
+        while (intentos > 0) {
+            System.out.print("Introduce la contraseña: ");
+            String entrada = sc.next();
+            if (entrada.equals(contraseña)) {
+                System.out.println("¡Enhorabuena! Contraseña correcta.");
+                return;
+            } else {
+                intentos--;
+                System.out.println("Contraseña incorrecta. Te quedan " + intentos + " intentos.");
+            }
+        }
+    }
+
+    // Ejercicio 17: Verificar si un día es laboral
+    public static void ejercicio17(Scanner sc) {
+        System.out.print("Introduce un día de la semana: ");
+        String dia = sc.next().toLowerCase();
+        switch (dia) {
+            case "lunes":
+            case "martes":
+            case "miércoles":
+            case "jueves":
+            case "viernes":
+                System.out.println("Es un día laboral.");
+                break;
+            case "sábado":
+            case "domingo":
+                System.out.println("No es un día laboral.");
+                break;
+            default:
+                System.out.println("Día no válido.");
+        }
+    }
+
+    // Ejercicio 18: Generar números aleatorios entre dos números
+    public static void ejercicio18(Scanner sc) {
+        System.out.print("Introduce el primer número: ");
+        int num1 = sc.nextInt();
+        System.out.print("Introduce el segundo número: ");
+        int num2 = sc.nextInt();
+        System.out.println("10 números aleatorios entre " + num1 + " y " + num2 + ":");
+        for (int i = 0; i < 10; i++) {
+            int random = (int) (Math.random() * (num2 - num1 + 1)) + num1;
+            System.out.println(random);
+        }
+    }
+
+    // Ejercicio 19: Contar cifras de un número entero positivo
+    public static void ejercicio19(Scanner sc) {
+        System.out.print("Introduce un número entero positivo: ");
+        int numero = sc.nextInt();
+        int cifras = Integer.toString(numero).length();
+        System.out.println("El número " + numero + " tiene " + cifras + " cifras.");
+    }
+
+    // Ejercicio 20: Comprobar si un número es primo
+    public static void ejercicio20(Scanner sc) {
+        System.out.print("Introduce un número: ");
+        int numero = sc.nextInt();
+        if (numero <= 1) {
+            System.out.println("No es un número primo.");
+            return;
+        }
+        boolean esPrimo = true;
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i == 0) {
+                esPrimo = false;
+                break;
+            }
+        }
+        System.out.println(esPrimo ? "Es un número primo." : "No es un número primo.");
+    }
+
+    // Ejercicio 21: Mostrar números primos del 1 al 100
+    public static void ejercicio21() {
+        System.out.println("Números primos entre 1 y 100:");
+        for (int i = 2; i <= 100; i++) {
+            boolean esPrimo = true;
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    esPrimo = false;
+                    break;
+                }
+            }
+            if (esPrimo) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Ejercicio 22: Contar vocales en una frase
+    public static void ejercicio22() {
+        String frase = "La lluvia en Sevilla es una maravilla";
+        long contador = frase.chars().filter(c -> "aeiou".indexOf(c) != -1).count();
+        System.out.println("Número de vocales en la frase: " + contador);
+    }
+
+    // Ejercicio 23: Reemplazar caracteres en una frase
+    public static void ejercicio23() {
+        String frase = "La lluvia en Sevilla es una maravilla";
+        String nuevaFrase = frase.replace('a', 'e');
+        System.out.println("Frase original: " + frase);
+        System.out.println("Frase modificada: " + nuevaFrase);
+    }
+
+    // Ejercicio 24: Convertir caracteres de una frase a ASCII
+    public static void ejercicio24() {
+        String frase = "La lluvia en Sevilla es una maravilla";
+        String ascii = frase.chars().mapToObj(c -> String.valueOf((int) c)).collect(Collectors.joining(" "));
+        System.out.println("Códigos ASCII de la frase: " + ascii);
+    }
+
+    // Ejercicio 25: Calculadora Polaca Inversa
+    public static void ejercicio25() {
+        String operacion = JOptionPane.showInputDialog("Introduce la operación (operando1 operador operando2):");
+        String[] partes = operacion.split(" ");
+        if (partes.length != 3) {
+            JOptionPane.showMessageDialog(null, "Operación no válida.");
+            return;
+        }
+
+        double op1 = Double.parseDouble(partes[0]);
+        String operador = partes[1];
+        double op2 = Double.parseDouble(partes[2]);
+
+        double resultado = 0;
+        switch (operador) {
+            case "+":
+                resultado = op1 + op2;
+                break;
+            case "-":
+                resultado = op1 - op2;
+                break;
+            case "*":
+                resultado = op1 * op2;
+                break;
+            case "/":
+                if (op2 != 0) {
+                    resultado = op1 / op2;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: División por cero.");
+                    return;
+                }
+                break;
+            case "^":
+                resultado = Math.pow(op1, op2);
+                break;
+            case "%":
+                resultado = op1 % op2;
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Operador no válido.");
+                return;
+        }
+        JOptionPane.showMessageDialog(null, "El resultado de la operación es: " + resultado);
+    }
+}
