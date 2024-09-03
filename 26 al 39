@@ -1,0 +1,294 @@
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            mostrarMenu(); // Mostrar el menú con descripciones
+            option = sc.nextInt();
+            switch (option) {
+                case 26:
+                    ejercicio26(sc);
+                    break;
+                case 27:
+                    ejercicio27(sc);
+                    break;
+                case 28:
+                    ejercicio28(sc);
+                    break;
+                case 29:
+                    ejercicio29(sc);
+                    break;
+                case 30:
+                    ejercicio30(sc);
+                    break;
+                case 31:
+                    ejercicio31(sc);
+                    break;
+                case 32:
+                    ejercicio32(sc);
+                    break;
+                case 33:
+                    ejercicio33(sc);
+                    break;
+                case 34:
+                    ejercicio34(sc);
+                    break;
+                case 35:
+                    ejercicio35(sc);
+                    break;
+                case 36:
+                    ejercicio36(sc);
+                    break;
+                case 37:
+                    ejercicio37(sc);
+                    break;
+                case 38:
+                    ejercicio38(sc);
+                    break;
+                case 39:
+                    ejercicio39();
+                    break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, elige una opción entre 0 y 39.");
+            }
+        } while (option != 0);
+    }
+
+    // Método para mostrar el menú con descripciones
+    public static void mostrarMenu() {
+        System.out.println("\n*** MENÚ DE EJERCICIOS (26-39) ***");
+        System.out.println("26. Sumar números del 1 hasta un número dado.");
+        System.out.println("27. Contar números introducidos hasta insertar -1.");
+        System.out.println("28. Eliminar los espacios de una frase.");
+        System.out.println("29. Concatenar frases hasta insertar una cadena vacía.");
+        System.out.println("30. Convertir una frase a mayúsculas o minúsculas.");
+        System.out.println("31. Mostrar la longitud de una cadena.");
+        System.out.println("32. Comparar dos palabras introducidas por teclado.");
+        System.out.println("33. Extraer la cuarta y quinta letra de una cadena.");
+        System.out.println("34. Separar una frase en palabras.");
+        System.out.println("35. Comprobar si un día es laboral (usando enum).");
+        System.out.println("36. Comprobar si un día es laboral (enum mejorado).");
+        System.out.println("37. Obtener información de un mes basado en días.");
+        System.out.println("38. Analizar números introducidos hasta insertar -1.");
+        System.out.println("39. Mostrar un reloj digital en tiempo real.");
+        System.out.println("0. Salir.");
+        System.out.print("Elige una opción: ");
+    }
+
+    // Ejercicio 26
+    public static void ejercicio26(Scanner sc) {
+        System.out.println("Introduce un número mayor que 1:");
+        int num = sc.nextInt();
+        if (num > 1) {
+            int suma = 0;
+            for (int i = 1; i <= num; i++) {
+                suma += i;
+            }
+            System.out.println("La suma de 1 a " + num + " es: " + suma);
+        } else {
+            System.out.println("Número no válido.");
+        }
+    }
+
+    // Ejercicio 27
+    public static void ejercicio27(Scanner sc) {
+        int contador = 0;
+        int num;
+        System.out.println("Introduce números (introduce -1 para terminar):");
+        while ((num = sc.nextInt()) != -1) {
+            contador++;
+        }
+        System.out.println("Se introdujeron " + contador + " números.");
+    }
+
+    // Ejercicio 28
+    public static void ejercicio28(Scanner sc) {
+        System.out.println("Introduce una frase:");
+        sc.nextLine();  // Consumir el salto de línea
+        String frase = sc.nextLine();
+        String sinEspacios = frase.replace(" ", "");
+        System.out.println("Frase sin espacios: " + sinEspacios);
+    }
+
+    // Ejercicio 29
+    public static void ejercicio29(Scanner sc) {
+        String resultado = "";
+        String input;
+        System.out.println("Introduce frases (cadena vacía para terminar):");
+        sc.nextLine();  // Consumir el salto de línea
+        while (!(input = sc.nextLine()).isEmpty()) {
+            resultado += input + " ";
+        }
+        System.out.println("Frase resultante: " + resultado.trim());
+    }
+
+    // Ejercicio 30
+    public static void ejercicio30(Scanner sc) {
+        System.out.println("Introduce una frase:");
+        sc.nextLine();  // Consumir el salto de línea
+        String frase = sc.nextLine();
+        System.out.println("¿Convertir a (1) Mayúsculas o (2) Minúsculas?");
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            System.out.println("Resultado: " + frase.toUpperCase());
+        } else if (choice == 2) {
+            System.out.println("Resultado: " + frase.toLowerCase());
+        } else {
+            System.out.println("Opción no válida.");
+        }
+    }
+
+    // Ejercicio 31
+    public static void ejercicio31(Scanner sc) {
+        System.out.println("Introduce una frase:");
+        sc.nextLine();  // Consumir el salto de línea
+        String frase = sc.nextLine();
+        System.out.println("Longitud de la cadena: " + frase.length());
+    }
+
+    // Ejercicio 32
+    public static void ejercicio32(Scanner sc) {
+        System.out.println("Introduce la primera palabra:");
+        String palabra1 = sc.next();
+        System.out.println("Introduce la segunda palabra:");
+        String palabra2 = sc.next();
+        if (palabra1.equals(palabra2)) {
+            System.out.println("Las palabras son iguales.");
+        } else {
+            System.out.println("Las palabras son diferentes.");
+        }
+    }
+
+    // Ejercicio 33
+    public static void ejercicio33(Scanner sc) {
+        System.out.println("Introduce una cadena de texto:");
+        String cadena = sc.next();
+        if (cadena.length() >= 5) {
+            System.out.println("Cuarta y quinta letra: " + cadena.substring(3, 5));
+        } else {
+            System.out.println("La cadena es demasiado corta.");
+        }
+    }
+
+    // Ejercicio 34
+    public static void ejercicio34(Scanner sc) {
+        System.out.println("Introduce una frase:");
+        sc.nextLine();  // Consumir el salto de línea
+        String frase = sc.nextLine();
+        String[] palabras = frase.split(" ");
+        for (String palabra : palabras) {
+            System.out.println(palabra);
+        }
+    }
+
+    // Ejercicio 35
+    public static void ejercicio35(Scanner sc) {
+        System.out.println("Introduce un día de la semana:");
+        String dia = sc.next().toUpperCase();
+        DiaSemana diaSemana = DiaSemana.valueOf(dia);
+        if (diaSemana.esLaboral()) {
+            System.out.println(dia + " es un día laboral.");
+        } else {
+            System.out.println(dia + " no es un día laboral.");
+        }
+    }
+
+    enum DiaSemana {
+        LUNES(true), MARTES(true), MIERCOLES(true), JUEVES(true), VIERNES(true), SABADO(false), DOMINGO(false);
+
+        private boolean laboral;
+
+        DiaSemana(boolean laboral) {
+            this.laboral = laboral;
+        }
+
+        public boolean esLaboral() {
+            return laboral;
+        }
+    }
+
+    // Ejercicio 36
+    public static void ejercicio36(Scanner sc) {
+        // Similar al ejercicio 35, ya implementado con el enum mejorado.
+        ejercicio35(sc);
+    }
+
+    // Ejercicio 37
+    public static void ejercicio37(Scanner sc) {
+        System.out.println("Introduce el número de días para buscar el mes:");
+        int dias = sc.nextInt();
+        for (Mes mes : Mes.values()) {
+            if (mes.getDias() == dias) {
+                System.out.println("Mes: " + mes + ", Orden: " + mes.getOrden());
+            }
+        }
+    }
+
+    enum Mes {
+        ENERO(1, 31), FEBRERO(2, 28), MARZO(3, 31), ABRIL(4, 30), MAYO(5, 31),
+        JUNIO(6, 30), JULIO(7, 31), AGOSTO(8, 31), SEPTIEMBRE(9, 30),
+        OCTUBRE(10, 31), NOVIEMBRE(11, 30), DICIEMBRE(12, 31);
+
+        private int orden;
+        private int dias;
+
+        Mes(int orden, int dias) {
+            this.orden = orden;
+            this.dias = dias;
+        }
+
+        public int getOrden() {
+            return orden;
+        }
+
+        public int getDias() {
+            return dias;
+        }
+    }
+
+    // Ejercicio 38
+    public static void ejercicio38(Scanner sc) {
+        int num, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE, suma = 0, sumaPos = 0, sumaNeg = 0, contador = 0;
+        System.out.println("Introduce números (introduce -1 para terminar):");
+        while ((num = sc.nextInt()) != -1) {
+            if (num > max) max = num;
+            if (num < min) min = num;
+            suma += num;
+            if (num > 0) sumaPos += num;
+            if (num < 0) sumaNeg += num;
+            contador++;
+        }
+        if (contador > 0) {
+            System.out.println("Mayor número introducido: " + max);
+            System.out.println("Menor número introducido: " + min);
+            System.out.println("Suma de todos los números: " + suma);
+            System.out.println("Suma de los números positivos: " + sumaPos);
+            System.out.println("Suma de los números negativos: " + sumaNeg);
+            System.out.println("Media de la suma: " + (double) suma / contador);
+        } else {
+            System.out.println("No se introdujeron números.");
+        }
+    }
+
+ // Ejercicio 39: Reloj Digital en Tiempo Real
+    public static void ejercicio39() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss"); // Formato de tiempo HH:mm:ss
+        while (true) {
+            LocalTime horaActual = LocalTime.now();
+            System.out.print("\r" + horaActual.format(formatter)); // Mostrar la hora en formato HH:mm:ss
+            try {
+                Thread.sleep(1000); // Pausa de 1 segundo para actualizar el tiempo
+            } catch (InterruptedException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+}
