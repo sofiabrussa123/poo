@@ -1,0 +1,181 @@
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class MenuEjercicios {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Menú de Ejercicios Básicos:");
+            System.out.println("1. Operaciones básicas");
+            System.out.println("2. Comparar dos números");
+            System.out.println("3. Mensaje de bienvenida");
+            System.out.println("4. Solicitar nombre con JOptionPane");
+            System.out.println("5. Calcular área de un círculo");
+            System.out.println("6. Comprobar si un número es divisible entre 2");
+            System.out.println("7. Mostrar carácter de tabla ASCII");
+            System.out.println("8. Mostrar código ASCII de un carácter");
+            System.out.println("9. Calcular precio con IVA");
+            System.out.println("10. Mostrar números del 1 al 100 con while");
+            System.out.println("11. Mostrar números del 1 al 100 con for");
+            System.out.println("12. Mostrar números del 1 al 100 divisibles entre 2 y 3");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    operacionesBasicas();
+                    break;
+                case 2:
+                    compararNumeros();
+                    break;
+                case 3:
+                    mensajeBienvenida();
+                    break;
+                case 4:
+                    solicitarNombreJOptionPane();
+                    break;
+                case 5:
+                    calcularAreaCirculo();
+                    break;
+                case 6:
+                    comprobarDivisibleEntre2();
+                    break;
+                case 7:
+                    mostrarCaracterASCII();
+                    break;
+                case 8:
+                    mostrarCodigoASCII();
+                    break;
+                case 9:
+                    calcularPrecioConIVA();
+                    break;
+                case 10:
+                    mostrarNumerosWhile();
+                    break;
+                case 11:
+                    mostrarNumerosFor();
+                    break;
+                case 12:
+                    mostrarNumerosDivisibles2y3();
+                    break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida, por favor intente nuevamente.");
+            }
+            System.out.println();
+        } while (opcion != 0);
+
+        sc.close();
+    }
+
+    public static void operacionesBasicas() {
+        int num1 = 10;
+        int num2 = 5;
+        System.out.println("Número 1: " + num1 + ", Número 2: " + num2);
+        System.out.println("Suma: " + (num1 + num2));
+        System.out.println("Resta: " + (num1 - num2));
+        System.out.println("Multiplicación: " + (num1 * num2));
+        System.out.println("División: " + (num1 / num2));
+        System.out.println("Módulo: " + (num1 % num2));
+    }
+
+    public static void compararNumeros() {
+        int num1 = 10;
+        int num2 = 5;
+        System.out.println("Número 1: " + num1 + ", Número 2: " + num2);
+        if (num1 > num2) {
+            System.out.println("Número 1 es mayor que Número 2");
+        } else if (num1 < num2) {
+            System.out.println("Número 1 es menor que Número 2");
+        } else {
+            System.out.println("Ambos números son iguales");
+        }
+    }
+
+    public static void mensajeBienvenida() {
+        String nombre = "Fernando";
+        System.out.println("Bienvenido " + nombre);
+    }
+
+    public static void solicitarNombreJOptionPane() {
+        String nombre = JOptionPane.showInputDialog("Introduce tu nombre:");
+        System.out.println("Bienvenido " + nombre);
+    }
+
+    public static void calcularAreaCirculo() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce el radio del círculo: ");
+        double radio = sc.nextDouble();
+        double area = Math.PI * Math.pow(radio, 2);
+        System.out.println("El radio introducido es: " + radio);
+        System.out.println("El área del círculo es: " + area);
+    }
+
+    public static void comprobarDivisibleEntre2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce un número: ");
+        int numero = sc.nextInt();
+        if (numero % 2 == 0) {
+            System.out.println("El número " + numero + " es divisible entre 2.");
+        } else {
+            System.out.println("El número " + numero + " no es divisible entre 2.");
+        }
+    }
+
+    public static void mostrarCaracterASCII() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce un número: ");
+        int numero = sc.nextInt();
+        char caracter = (char) numero;
+        System.out.println("El número introducido es: " + numero);
+        System.out.println("El carácter correspondiente en la tabla ASCII es: " + caracter);
+    }
+
+    public static void mostrarCodigoASCII() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce un carácter: ");
+        char caracter = sc.next().charAt(0);
+        int codigoASCII = (int) caracter;
+        System.out.println("El carácter introducido es: " + caracter);
+        System.out.println("El código ASCII correspondiente es: " + codigoASCII);
+    }
+
+    public static void calcularPrecioConIVA() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce el precio del producto: ");
+        double precio = sc.nextDouble();
+        double precioConIVA = precio * 1.21;
+        System.out.println("El precio introducido es: " + precio);
+        System.out.println("El precio con IVA (21%) es: " + precioConIVA);
+    }
+
+    public static void mostrarNumerosWhile() {
+        int i = 1;
+        while (i <= 100) {
+            System.out.print(i + " ");
+            i++;
+        }
+        System.out.println();
+    }
+
+    public static void mostrarNumerosFor() {
+        for (int i = 1; i <= 100; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    public static void mostrarNumerosDivisibles2y3() {
+        for (int i = 1; i <= 100; i++) {
+            if (i % 2 == 0 && i % 3 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
